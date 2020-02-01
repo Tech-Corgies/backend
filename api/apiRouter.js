@@ -1,8 +1,8 @@
 const appRouter = require('express').Router();
 const authRouter = require('../resources/auth/authRouter');
-const modelRouter = require('../resources/model/modelRouter');
+const predictRouter = require('../resources/predict/predictRouter');
 
 appRouter.use('/auth', authRouter);
-appRouter.use('/model', modelRouter);
+appRouter.use('/predict', predictRouter);
 
 module.exports = appRouter;
