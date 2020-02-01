@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { JWTSECRET } = require('../../config');
 const { filter } = require('./authModel');
 
-exports.authorized = (req, res, next) => {
+const authorized = (req, res, next) => {
   const token = req.headers.authorization;
   if (token) {
     jwt.verify(token, JWTSECRET, (err, decodedToken) => {
@@ -20,7 +20,7 @@ exports.authorized = (req, res, next) => {
   }
 };
 
-exports.checkEmailExists = async (req, res, next) => {
+const checkEmailExists = async (req, res, next) => {
   const { email } = req.body;
   const user = await filter({ email });
   if (!user) {
@@ -30,3 +30,5 @@ exports.checkEmailExists = async (req, res, next) => {
     next();
   }
 };
+
+module.exports = { checkEmailExists, authorized };

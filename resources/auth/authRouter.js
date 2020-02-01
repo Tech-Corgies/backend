@@ -10,7 +10,7 @@ const {
 } = require('./authControllers');
 
 const { authorized, checkEmailExists } = require('./authMiddlewares');
-const googlePassport = require('../../utils/googlePassport');
+const googlePassport = require('./utils/googlePassport');
 
 const authRouter = express.Router();
 
