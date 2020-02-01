@@ -72,10 +72,15 @@ Request Error ( **400 - Bad Request** || **404 - Not Found** || **403 - Unauthor
 | -------------------------------------------------------------- | ----------------------- |
 | AUTH                                                                                     |
 | -------------------------------------------------------------- | ----------------------- |
-| [POST /api/auth](#postapiauth)                                 | Register A User         |
-| [POST /api/auth/login](#posttapiauthlogin)                     | Login A User            |
-| [PUT /api/auth/](#putapiauth)                                  | Modify email or password|
-| [DELETE /api/auth/](#deleteapiauth)                            | Delete User             |
+| [POST /api/auth](#post-apiauth)                                 | Register A User         |
+| [POST /api/auth/login](#post-tapiauthlogin)                     | Login A User            |
+| [PUT /api/auth/](#put-apiauth)                                  | Modify email or password|
+| [DELETE /api/auth/](#delete-apiauth)                            | Delete User             |
+| [PUT /api/auth/](#put-apiauth)                                  | Modify email or password|
+| [DELETE /api/auth/](#delete-apiauth)                            | Delete User             |
+| [GET /api/auth/google/](#get-apiauthgoogle)                    | Redirect to google auth |
+| [POST /api/auth/google/:token](#post-apiauthgoogleToken)       | Confirms auth & login   |
+| -------------------------------------------------------------- | ----------------------- |
 
 
 
@@ -185,5 +190,43 @@ Response body:
 ```json
 {
     "message": "Successfully removed user from database"
+}
+```
+
+#### GET /api/auth/google
+
+_**Description**: Redirects user to google auth, user will signin or cannot and will be redirected back to the landing page._.
+
+Request body:
+
+```json
+{}
+```
+
+Response body:
+
+```json
+{}
+```
+
+#### POST /api/auth/google/:token
+
+_**Description**: User will be verified in the data based as created and will be sent a token with userID._.
+
+Request body:
+
+```json
+{}
+```
+
+```json
+{
+    "message": "Welcome user",
+    "user": {
+        "id": "fdf92298-6ae0-424a-b43e-d2a71794f614",
+        "email": "tester@email.com",
+        "time_create": "2020-02-01T12:43:21.267Z"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiZmRmOTIyOTgtNmFlMC00MjRhLWI0M2UtZDJhNzE3OTRmNjE0IiwiaWF0IjoxNTgwNTYyMTc3LCJleHAiOjE1ODA2NDg1Nzd9.XbGNLa0JuCUQALitHApVH73VUyYz-0fukdyFqfAyURI"
 }
 ```
