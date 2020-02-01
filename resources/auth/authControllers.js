@@ -2,7 +2,7 @@
 const bcrypt = require('bcrypt');
 const uuid = require('uuid/v4');
 const jwt = require('jsonwebtoken');
-const generateToken = require('../../utils/generateToken');
+const generateToken = require('./utils/generateToken');
 const { GOOGLE_FRONTEND_REDIRCT } = require('../../config/index');
 const {
   removeUser,

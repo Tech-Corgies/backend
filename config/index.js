@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const {
   JWTSECRET,
   PORT,
@@ -5,6 +7,10 @@ const {
   GOOGLE_CLIENT_SECRET,
   GOOGLE_FRONTEND_REDIRCT,
   GOOGLE_BACKEND_BASEURL,
+  PROJECT_ID,
+  COMPUTER_REGION,
+  MODEL_ID,
+  SCORE_THRESHOLD,
 } = process.env;
 
 module.exports = {
@@ -14,4 +20,8 @@ module.exports = {
   GOOGLE_CLIENT_SECRET,
   GOOGLE_FRONTEND_REDIRCT,
   GOOGLE_BACKEND_BASEURL,
+  PROJECT_ID,
+  COMPUTER_REGION,
+  MODEL_ID,
+  SCORE_THRESHOLD,
 };
