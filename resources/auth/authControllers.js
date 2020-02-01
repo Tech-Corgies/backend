@@ -1,8 +1,16 @@
+/* eslint-disable no-underscore-dangle */
 const bcrypt = require('bcrypt');
 const uuid = require('uuid/v4');
+const jwt = require('jsonwebtoken');
 const generateToken = require('../../utils/generateToken');
-
-const { removeUser, insertUser, modifyUser, filter } = require('./authModel');
+const { GOOGLE_FRONTEND_REDIRCT } = require('../../config/index');
+const {
+  removeUser,
+  insertUser,
+  modifyUser,
+  filter,
+  findUserBy,
+} = require('./authModel');
 
 const registerUser = async (req, res) => {
   const { email, password } = req.body;
@@ -101,9 +109,39 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const authGoogle = async (req, res) => {
+  try {
+    const { user } = req._passport.session;
+    const token = await generateToken(user);
+    res.status(200).redirect(`${GOOGLE_FRONTEND_REDIRCT}${token}`);
+  } catch (error) {
+    res.status(401).json({
+      message: `Error authenticating via google ${error.message}`,
+    });
+  }
+};
+
+const completeGoogleAuth = async (req, res) => {
+  try {
+    const { token } = req.params;
+    const decodedToken = jwt.decode(token);
+    const { subject } = decodedToken;
+    const foundUser = await findUserBy({ id: subject });
+    res.status(200).json({
+      message: `Welcome. You're logged in!`,
+      user: foundUser,
+      token,
+    });
+  } catch (error) {
+    res.status(401).json({ message: `Failed to complete authorization` });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   editUser,
   deleteUser,
+  authGoogle,
+  completeGoogleAuth,
 };
