@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const fileUpload = require('express-fileupload');
 
 const googlePassport = require('../resources/auth/utils/googlePassport');
 
@@ -11,6 +12,7 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 server.use(helmet());
+server.use(fileUpload());
 
 server.use(googlePassport.Passport.initialize());
 server.use(googlePassport.Passport.session());

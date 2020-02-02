@@ -6,7 +6,7 @@ const proccessPrediction = async (req, res) => {
   try {
     const params = {};
 
-    const { content } = req.body;
+    const content = req.files.content.data.toString('base64');
 
     if (SCORE_THRESHOLD) {
       params.score_threshold = SCORE_THRESHOLD;
@@ -43,7 +43,7 @@ const proccessPrediction = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: `Unable to complete prediction transaction ${error.message}`,
+      message: `Unable to complete prediction transaction ${error}`,
     });
   }
 };
