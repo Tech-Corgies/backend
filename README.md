@@ -5,7 +5,7 @@
 ```json
 "version": "1.0"
 "description": "TTB2020"
-"apihost":  "localhost"
+"apihost":  "https://saveenviro.herokuapp.com/api"
 ```
 
 ## Getting Started
