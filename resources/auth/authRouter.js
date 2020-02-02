@@ -9,15 +9,18 @@ const {
   completeGoogleAuth,
 } = require('./authControllers');
 
+const validate = require('../../utils/validate');
+const { registerSchema, loginSchema, editSchema } = require('./authSchema');
+
 const { authorized, checkEmailExists } = require('./authMiddlewares');
 const googlePassport = require('./utils/googlePassport');
 
 const authRouter = express.Router();
 
-authRouter.post('/', registerUser);
-authRouter.put('/', authorized, editUser);
+authRouter.post('/', validate(registerSchema), registerUser);
+authRouter.put('/', validate(editSchema), authorized, editUser);
 authRouter.delete('/', authorized, deleteUser);
-authRouter.post('/login', checkEmailExists, loginUser);
+authRouter.post('/login', validate(loginSchema), checkEmailExists, loginUser);
 
 authRouter.get(
   '/google',
