@@ -26,11 +26,19 @@ These instructions will get you a copy of the project up and running on your loc
 - Setup Environment Variables (.env) on root folder:
 
   ```.env
-  PORT
-  TEST_DATABASE_URL
-  DATABASE_URL
-  DB_ENV
-
+DATABASE_URL
+TEST_DATABASE_URL
+PORT
+JWTSECRET
+GOOGLE_CLIENT_ID
+GOOGLE_CLIENT_SECRET
+GOOGLE_FRONTEND_REDIRCT
+GOOGLE_BACKEND_BASEURL
+PROJECT_ID
+COMPUTER_REGION
+MODEL_ID
+SCORE_THRESHOLD
+GOOGLE_APPLICATION_CREDENTIALS
   ```
 
 - To start API
