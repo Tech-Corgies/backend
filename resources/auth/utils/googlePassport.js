@@ -4,7 +4,7 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid/v4');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const { insertUser, findUserBy } = require('../resources/auth/authModel');
+const { insertUser, findUserBy } = require('../authModel');
 
 passport.serializeUser(function(user, done) {
   done(null, user);
